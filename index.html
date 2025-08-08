@@ -1,76 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sofia Velagri</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #8a6d5d;
-      color: #ffffff;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f6f3;
+      color: #111;
+    }
+
+    header {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      padding: 40px 20px;
+      padding: 1.2rem 1.5rem;
+      background-color: #fff;
+      font-weight: bold;
+      font-size: 1.2rem;
     }
-    img.profile {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center bottom;
-      border: 3px solid #fff;
-      margin-bottom: 20px;
+
+    .menu-icon {
+      font-size: 1.5rem;
     }
-    h1 {
-      font-size: 28px;
-      margin: 10px 0;
-    }
-    p {
-      font-size: 16px;
-      text-align: center;
-      max-width: 500px;
-      color: #ccc;
-      opacity: 0.5;
-    }
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 30px;
-      width: 100%;
-      max-width: 400px;
-    }
-    .links a {
-      background: #333;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
+
+    .hero a {
+      display: block;
       text-decoration: none;
-      font-size: 18px;
+      color: inherit;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .hero img {
+      max-width: 100%;
       border-radius: 10px;
-      transition: 0.3s;
+      object-fit: cover;
+      aspect-ratio: 4 / 5;
     }
-    .links a:hover {
-      background: #555;
+
+    .tagline {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-top: 1.2rem;
     }
-}
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid #111;
+      background: none;
+      font-weight: 500;
+      text-decoration: none;
+      color: #111;
+      border-radius: 6px;
+    }
+
+    .warning {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .warning span {
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: 2px solid #111;
+      padding: 0.2rem 0.4rem;
+      border-radius: 50%;
+    }
+
+    footer {
+      margin-top: 2rem;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: #fff;
+      border-top: 1px solid #ddd;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #111;
+      font-size: 1rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (min-width: 768px) {
+      .tagline {
+        font-size: 2.5rem;
+      }
+
+      .cta-button {
+        font-size: 1.1rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <img class="profile" src="sofia.jpg" alt="Sofia Velagri" />
-  <h1>Sofia Velagri  <img src="met.png" alt="met" width="28" height="28" style="vertical-align: middle; margin-right: 8px;"></h1>
-  <h1><p>OFFICIAL PAGE OF SOFIA VELAGRI.</p></h1>
-  <p>Follow for daily content, social links, and more.</p>
-  <div class="links">    
+
+  <header>
+    <div>MODEL</div>
+    <div class="menu-icon">☰</div>
+  </header>
+
+  <!-- Hero block is clickable -->
+  <section class="hero">
     <a href="https://www.fanvue.com/sofiakiko" target="_blank">
-    <img src="Fan.png" alt="Fanvue" width="32" height="40" style="vertical-align: middle; margin-right: 8px;">Fanvue  <img src="18.png" alt="Fanvue" width="32" height="32" style="vertical-align: middle; margin-left: 8px;"></a>
-    <a href="https://www.instagram.com/sofiavelagri?igsh=OHdraG5ocWhsanEy" target="_blank">
-    <img src="inst.png" alt="Instagram" width="28" height="28" style="vertical-align: middle; margin-right: 8px;">Instagram</a>    
-    <a href="mailto:forme@sofiavelagri.com"><img src="mesage.png" alt="Contact" width="28" height="28" style="vertical-align: middle; margin-right: 8px;">Contact</a>
-  </div>
+      <img src="portrait.jpg" alt="Model Portrait">
+      <div class="tagline">Discover the New Style</div>
+      <div class="cta-button">View Portfolio</div>
+    </a>
+    <div class="warning">
+      <span>18+</span> WARNING: Explicit Content
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://www.fanvue.com/sofiakiko" target="_blank">FANVI</a>
+    <a href="https://instagram.com/yourmodelpage" target="_blank">Instagram</a>
+    <a href="mailto:contact@example.com">Contact</a>
+  </footer>
+
 </body>
 </html>
