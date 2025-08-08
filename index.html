@@ -130,6 +130,60 @@
         font-size: 1.1rem;
       }
     }
+    /* Сайдбар скрыт по умолчанию */
+#sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px; /* прячем за экран */
+  width: 250px;
+  height: 100%;
+  background-color: #111;
+  color: #fff;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: right 0.3s ease;
+  z-index: 1001;
+}
+
+#sidebar a {
+  padding: 12px 20px;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#sidebar a:hover {
+  background-color: #333;
+}
+
+/* Тёмный фон при открытии меню */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+/* Открытое меню */
+#sidebar.open {
+  right: 0;
+}
+
+#overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
   </style>
 </head>
 <body>
@@ -138,8 +192,28 @@
     <a href="https://www.fanvue.com/sofiakiko" target="_blank" class="logo-link">
       SOFIA VELAGRI
     </a>    
-    <div class="menu-icon">☰</div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
   </header>
+  
+<!-- Сайдбар -->
+<div id="sidebar">
+  <a href="https://www.fanvue.com/sofiakiko" target="_blank">
+    <img src="fanvue.png" alt="Fanvue" width="24" height="24"> Fanvue
+  </a>
+  <a href="https://instagram.com/yourmodelpage" target="_blank">
+    <img src="instagram.png" alt="Instagram" width="24" height="24"> Instagram
+  </a>
+  <a href="mailto:contact@example.com">
+    <img src="email.png" alt="Contact" width="24" height="24"> Contact
+  </a>
+</div>
+<div id="overlay" onclick="toggleMenu()"></div>
+<script>
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
+}
+</script>
 
   <!-- Hero block is clickable -->
   <section class="hero">
