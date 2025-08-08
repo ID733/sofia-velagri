@@ -175,3 +175,68 @@
       transition: opacity 0.3s ease;
       z-index: 1000;
     }
+
+    /* Открытое меню */
+    #sidebar.open { right: 0; }
+    #overlay.show { opacity: 1; visibility: visible; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://www.fanvue.com/sofiakiko" target="_blank" class="logo-link">
+      SOFIA VELAGRI
+    </a>    
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  </header>
+  
+  <!-- Сайдбар -->
+  <div id="sidebar">
+    <a href="https://www.fanvue.com/sofiakiko" target="_blank">
+      <img src="fanvue.png" alt="Fanvue" width="24" height="24"> Fanvue
+    </a>
+    <a href="https://instagram.com/yourmodelpage" target="_blank">
+      <img src="instagram.png" alt="Instagram" width="24" height="24"> Instagram
+    </a>
+    <a href="mailto:contact@example.com">
+      <img src="email.png" alt="Contact" width="24" height="24"> Contact
+    </a>
+  </div>
+  <div id="overlay" onclick="toggleMenu()"></div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("open");
+      document.getElementById("overlay").classList.toggle("show");
+    }
+  </script>
+
+  <!-- Hero block is clickable -->
+  <section class="hero">
+    <a href="https://www.fanvue.com/sofiakiko" target="_blank">
+      <img src="sofia.png" alt="Sofia Velagri">
+      <div class="tagline">Discover the New Style</div>
+      <div class="cta-button">
+        Private Content
+        <img src="18.png" alt="Fanvue" width="32" height="32" style="vertical-align: middle; margin-left: 8px;">
+      </div>
+    </a>
+    <div class="warning">
+      <span>18+</span> WARNING: Explicit Content
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://www.fanvue.com/sofiakiko" target="_blank">
+      <img src="Fan.png" alt="Fanvue" width="32" height="40" style="vertical-align: middle; margin-right: 8px;">Fanvue
+    </a>
+    <a href="https://www.instagram.com/sofiavelagri?igsh=OHdraG5ocWhsanEy" target="_blank">
+      <img src="inst.png" alt="Instagram" width="28" height="28" style="vertical-align: middle; margin-right: 8px;">Instagram
+    </a>
+    <a href="mailto:forme@sofiavelagri.com">
+      <img src="mesage.png" alt="Contact" width="28" height="28" style="vertical-align: middle; margin-right: 8px;">Contact
+    </a>
+  </footer>
+
+</body>
+</html>
