@@ -26,6 +26,21 @@
       font-weight: bold;
       font-size: 1.2rem;
     }
+    .logo-link {
+      text-decoration: none; /* убирает подчёркивание */
+      color: inherit;        /* цвет как у обычного текста */
+      font-weight: bold;     /* можно убрать, если не нужно */
+    }
+
+    .logo-link:visited {
+      color: inherit;        /* даже после клика цвет не меняется */
+    }
+
+    .logo-link:hover,
+    .logo-link:active {
+      color: inherit;        /* цвет не меняется при наведении/клике */
+      text-decoration: none;
+    }
 
     .menu-icon {
       font-size: 1.5rem;
