@@ -1,195 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Model</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SOFIA VELAGRI</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f8f6f3;
-      color: #111;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f8f6f3; color: #111; }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 1.5rem;
-      background-color: #fff;
-      font-weight: bold;
-      font-size: 1.2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 1.5rem; background-color: #fff; font-weight: bold; font-size: 1.2rem;
     }
-    .logo-link {
-      text-decoration: none; /* убирает подчёркивание */
-      color: inherit;        /* цвет как у обычного текста */
-      font-weight: bold;     /* можно убрать, если не нужно */
+    .logo-link { text-decoration: none; color: inherit; font-weight: bold; }
+    .logo-link:visited { color: inherit; }
+    .logo-link:hover, .logo-link:active { color: inherit; text-decoration: none; }
+
+    .menu-icon { font-size: 1.5rem; cursor: pointer; }
+
+    .hero { position: relative; padding: 1.5rem; text-align: center; }
+
+    /* ====== CAROUSEL ====== */
+    .carousel{
+      position: relative;
+      width: 100%;
+      max-width: 980px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      user-select: none;
+      aspect-ratio: 4 / 5; /* даёт высоту контейнеру, т.к. слайды absolute */
     }
 
-    .logo-link:visited {
-      color: inherit;        /* даже после клика цвет не меняется */
+    .carousel__link{ display:block; width:100%; height:100%; }
+
+    .carousel__slide{
+      position: absolute; inset: 0;
+      opacity: 0; z-index: 1;
+      transition: opacity 500ms ease;
+    }
+    .carousel__slide.is-active{ opacity: 1; }
+
+    .carousel__slide img{
+      width: 100%; height: 100%;
+      display: block; object-fit: cover;
     }
 
-    .logo-link:hover,
-    .logo-link:active {
-      color: inherit;        /* цвет не меняется при наведении/клике */
-      text-decoration: none;
+    .carousel__control{
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border: none; border-radius: 999px;
+      background: rgba(0,0,0,0.5); color: #fff; font-size: 28px; line-height: 1;
+      display: grid; place-items: center; cursor: pointer; z-index: 3;
     }
+    .carousel__control:hover{ background: rgba(0,0,0,0.65); }
+    .carousel__control--prev{ left: 12px; }
+    .carousel__control--next{ right: 12px; }
 
-    .menu-icon {
-      font-size: 1.5rem;
-      cursor: pointer; /* добавлено */
+    .carousel__dots{
+      position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 3;
+      padding: 6px 8px; background: rgba(0,0,0,0.25); border-radius: 999px;
+      backdrop-filter: blur(6px);
     }
+    .carousel__dot{ width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.5); border: none; cursor: pointer; }
+    .carousel__dot.is-active{ background: #fff; }
 
-    .hero a {
-      display: block;
-      text-decoration: none;
-      color: inherit;
+    /* Слоган — ссылка без изменения внешнего вида */
+.tagline,
+.tagline:link,
+.tagline:visited,
+.tagline:hover,
+.tagline:active {
+  color: inherit;
+  text-decoration: none;
+  display: block; /* как было у div */
+}
+
+/* (необязательно) убрать контур при фокусе мышью/клавой */
+.tagline:focus { outline: none; }
+
+    .cta-button{
+      display:inline-block; margin-top:1rem; padding:0.6rem 1.8rem;
+      border:2px solid #111; background:#a39e9e; font-weight:500; text-decoration:none;
+      color:#fff; border-radius:6px;
     }
-
-    .hero {
-      text-align: center;
-      padding: 1.5rem;
+    .warning{
+      margin-top:1.5rem; font-size:0.95rem; display:flex; align-items:center;
+      justify-content:center; gap:0.5rem; color:#333; font-weight:500;
     }
-
-    .hero img {
-      max-width: 100%;
-      border-radius: 10px;
-      object-fit: cover;
-      aspect-ratio: 4 / 5;
-    }
-
-    .tagline {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-top: 1.2rem;
-    }
-
-    .cta-button {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      border: 2px solid #111;
-      background: #a39e9e;
-      font-weight: 500;
-      text-decoration: none;
-      color: #ffffff;
-      border-radius: 6px;
-    }
-
-    .warning {
-      margin-top: 1.5rem;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: #333;
-      font-weight: 500;
-    }
-
-    .warning span {
-      font-size: 1.1rem;
-      font-weight: bold;
-      border: 2px solid #111;
-      padding: 0.2rem 0.4rem;
-      border-radius: 50%;
+    .warning span{
+      font-size:1.1rem; font-weight:bold; border:2px solid #111; padding:0.2rem 0.4rem;
+      border-radius:50%;
     }
 
     footer {
-      margin-top: 2rem;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      background-color: #fff;
-      border-top: 1px solid #ddd;
+      margin-top: 2rem; padding: 1rem; display: flex; justify-content: space-around;
+      align-items: center; background-color: #fff; border-top: 1px solid #ddd;
+    }
+    footer a { text-decoration: none; color: #111; font-size: 1rem; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (min-width: 768px){
+      .tagline{ font-size: 2.5rem; }
+      .cta-button{ font-size: 1.1rem; }
     }
 
-    footer a {
-      text-decoration: none;
-      color: #111;
-      font-size: 1rem;
+    /* Сайдбар */
+    #sidebar{
+      position: fixed; top: 0; right: -250px; width: 250px; height: 100%;
+      background-color:#111; color:#fff; padding-top:60px; display:flex;
+      flex-direction:column; gap:20px; transition:right 0.3s ease; z-index:1001;
     }
-
-    footer a:hover {
-      text-decoration: underline;
+    #sidebar a{
+      padding:12px 20px; color:#fff; text-decoration:none; display:flex; align-items:center; gap:10px;
     }
-
-    @media (min-width: 768px) {
-      .tagline {
-        font-size: 2.5rem;
-      }
-
-      .cta-button {
-        font-size: 1.1rem;
-      }
+    #sidebar a:hover{ background-color:#333; }
+    #overlay{
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background-color:rgba(0,0,0,0.5); opacity:0; visibility:hidden; transition:opacity 0.3s ease; z-index:1000;
     }
-
-    /* Сайдбар скрыт по умолчанию */
-    #sidebar {
-      position: fixed;
-      top: 0;
-      right: -250px; /* прячем за экран */
-      width: 250px;
-      height: 100%;
-      background-color: #111;
-      color: #fff;
-      padding-top: 60px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      transition: right 0.3s ease;
-      z-index: 1001;
-    }
-
-    #sidebar a {
-      padding: 12px 20px;
-      color: #fff;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    #sidebar a:hover {
-      background-color: #333;
-    }
-
-    /* Тёмный фон при открытии меню */
-    #overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease;
-      z-index: 1000;
-    }
-
-    /* Открытое меню */
-    #sidebar.open { right: 0; }
-    #overlay.show { opacity: 1; visibility: visible; }
+    #sidebar.open{ right:0; }
+    #overlay.show{ opacity:1; visibility:visible; }
   </style>
 </head>
 <body>
 
   <header>
-    <a href="https://www.fanvue.com/sofiakiko" target="_blank" class="logo-link">
-      SOFIA VELAGRI
-    </a>    
+    <a href="https://www.fanvue.com/sofiakiko" target="_blank" class="logo-link">SOFIA VELAGRI</a>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
   </header>
-  
+
   <!-- Сайдбар -->
   <div id="sidebar">
     <a href="https://www.fanvue.com/sofiakiko" target="_blank">
@@ -204,26 +147,22 @@
   </div>
   <div id="overlay" onclick="toggleMenu()"></div>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("open");
-      document.getElementById("overlay").classList.toggle("show");
-    }
-  </script>
-
-  <!-- Hero block is clickable -->
+  <!-- HERO с каруселью -->
   <section class="hero">
-    <a href="https://www.fanvue.com/sofiakiko" target="_blank">
-      <img src="sofia.jpg" alt="Sofia Velagri">
-      <div class="tagline">Discover the New Style</div>
-      <div class="cta-button">
-        Private Content
-        <img src="18.png" alt="Fanvue" width="32" height="32" style="vertical-align: middle; margin-left: 8px;">
-      </div>
-    </a>
-    <div class="warning">
-      <span>18+</span> WARNING: Explicit Content
+    <div class="carousel" id="heroCarousel" aria-live="polite">
+      <button class="carousel__control carousel__control--prev" aria-label="Предыдущая">‹</button>
+      <button class="carousel__control carousel__control--next" aria-label="Следующая">›</button>
+      <div class="carousel__dots" role="tablist" aria-label="Выбор слайда"></div>
     </div>
+
+    <a class="tagline" href="https://www.fanvue.com/sofiakiko" target="_blank" rel="noopener">
+  Discover the New Style
+    </a>
+    <a class="cta-button" href="https://www.fanvue.com/sofiakiko" target="_blank">
+      Private Content
+      <img src="18.png" alt="18+" width="32" height="32" style="vertical-align: middle; margin-left: 8px;">
+    </a>
+    <div class="warning"><span>18+</span> WARNING: Explicit Content</div>
   </section>
 
   <footer>
@@ -238,5 +177,94 @@
     </a>
   </footer>
 
+  <script>
+    function toggleMenu(){
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+
+    // ====== Карусель ======
+    (function(){
+      const images = [
+        { src: 'sofia.jpg',  alt: 'Sofia Velagri 1', link: 'https://www.fanvue.com/sofiakiko' },
+        { src: 'sofia2.jpg', alt: 'Sofia Velagri 2', link: 'https://www.fanvue.com/sofiakiko' },
+        { src: 'sofia3.jpg', alt: 'Sofia Velagri 3', link: 'https://www.fanvue.com/sofiakiko' },
+        { src: 'sofia4.jpg',  alt: 'Sofia Velagri 4', link: 'https://www.fanvue.com/sofiakiko' },
+        { src: 'sofia5.jpg',  alt: 'Sofia Velagri 5', link: 'https://www.fanvue.com/sofiakiko' },
+      ];
+
+      const root   = document.getElementById('heroCarousel');
+      const dotsEl = root.querySelector('.carousel__dots');
+      const btnPrev= root.querySelector('.carousel__control--prev');
+      const btnNext= root.querySelector('.carousel__control--next');
+
+      const slides = images.map((img)=>{
+        const a = document.createElement('a');
+        a.className = 'carousel__link';
+        a.href = img.link; a.target = '_blank';
+
+        const slide = document.createElement('div');
+        slide.className = 'carousel__slide';
+
+        const im = document.createElement('img');
+        im.src = img.src; im.alt = img.alt || '';
+        im.addEventListener('error', ()=>{
+          slide.innerHTML = '<div style="display:grid;place-items:center;height:100%;color:#fff;">Не найдено: '+img.src+'</div>';
+        });
+
+        slide.appendChild(im);
+        a.appendChild(slide);
+        root.appendChild(a);
+        return slide;
+      });
+
+      const dots = images.map((_,i)=>{
+        const b = document.createElement('button');
+        b.className = 'carousel__dot'; b.type = 'button';
+        b.setAttribute('aria-label','Слайд '+(i+1));
+        b.addEventListener('click', ()=>goTo(i,true));
+        dotsEl.appendChild(b);
+        return b;
+      });
+
+      let index = 0;
+      let timer = null;
+      const AUTOPLAY_MS = 2500;
+
+      function setActive(i){
+        slides.forEach(s=>s.classList.remove('is-active'));
+        dots.forEach(d=>d.classList.remove('is-active'));
+        slides[i].classList.add('is-active');
+        dots[i].classList.add('is-active');
+      }
+      function goTo(i, pause){
+        index = (i + slides.length) % slides.length;
+        setActive(index);
+        if (pause) restartAutoplay();
+      }
+      function next(){ goTo(index+1); }
+      function prev(){ goTo(index-1); }
+
+      function startAutoplay(){ stopAutoplay(); timer = setInterval(next, AUTOPLAY_MS); }
+      function stopAutoplay(){ if (timer){ clearInterval(timer); timer=null; } }
+      function restartAutoplay(){ stopAutoplay(); startAutoplay(); }
+
+      btnPrev.addEventListener('click', prev);
+      btnNext.addEventListener('click', next);
+
+      root.addEventListener('mouseenter', stopAutoplay);
+      root.addEventListener('mouseleave', startAutoplay);
+      root.addEventListener('touchstart', stopAutoplay, {passive:true});
+      root.addEventListener('touchend',   startAutoplay, {passive:true});
+
+      document.addEventListener('keydown', (e)=>{
+        if (e.key === 'ArrowLeft')  prev();
+        if (e.key === 'ArrowRight') next();
+      });
+
+      setActive(0);
+      startAutoplay();
+    })();
+  </script>
 </body>
 </html>
